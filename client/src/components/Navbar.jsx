@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink, Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -15,38 +16,37 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           Home
-        </a>
-
+        </Link>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a class="nav-link" href="http://localhost:3000/api/list">
+              <NavLink className="nav-link" to="/list">
                 List
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a class="nav-link" href="http://localhost:3000/api/create">
-                New
-              </a>
+              <NavLink className="nav-link" to="/create">
+                Create
+              </NavLink>
             </li>
           </ul>
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a class="nav-link" href="http://localhost:3000/signin">
+              <NavLink className="nav-link" to="/signin">
                 Signin
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a class="nav-link" href="http://localhost:3000/signin">
+              <NavLink className="nav-link" to="/signup">
                 Signup
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a class="nav-link" href="http://localhost:3000/signin">
-                Bussiness
-              </a>
+              <NavLink className="nav-link" to="/premiumSignup">
+                premium
+              </NavLink>
             </li>
           </ul>
         </div>
