@@ -1,6 +1,8 @@
 import "./App.css";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
+import Signin from "./components/Signin";
+import Signup from "./components/Signup";
 import Navbar from "./components/Navbar";
 import { Routes, Route } from "react-router-dom";
 
@@ -12,12 +14,12 @@ const App = () => {
       </header>
       <main>
         <Routes>
-          <Route path="/premiumSignup" component={<Home />} />
-          <Route path="/signup" component={<Home />} />
-          <Route path="/signin" component={<Home />} />
-          <Route path="/logout" component={<Home />} />
+          <Route path="/premiumSignup" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/logout" element={<Home />} />
 
-          <Route path="/" exact component={<Home />} />
+          <Route path="/" exact element={<Home />} />
         </Routes>
       </main>
       <footer>
