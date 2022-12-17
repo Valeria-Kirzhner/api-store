@@ -21,6 +21,7 @@ router.post("/", async (req, res) => {
 
   mysqlConnection.query(sql, values, (err, result, fields) => {
     if (!err) {
+      console.log("registred");
       return res.sendStatus(200);
     } else {
       console.log(err);

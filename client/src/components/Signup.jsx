@@ -1,7 +1,7 @@
 import React from "react";
 import Joi from "joi-browser";
 import { useEffect, useState } from "react";
-import RegistretionForm from "./forms/RegistrationForm2";
+import RegistretionForm from "./forms/RegistrationForm";
 
 import { Redirect } from "react-router-dom";
 
