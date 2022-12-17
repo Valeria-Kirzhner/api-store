@@ -2,13 +2,17 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import http from "../../services/httpService";
+import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = ({}) => {
+  const navigate = useNavigate();
+
   const [first_name, setFirstName] = useState(null);
   const [last_name, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
+  const [statment, setStatment] = useState(null);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -35,7 +39,7 @@ const RegistrationForm = ({}) => {
     try {
       await http.post("/users", payload);
       toast("A new acoount is opened");
-      this.props.history.replace("/signin");
+      navigate("/signin");
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         this.setState({ errors: { email: "Email is taken" } });
@@ -63,7 +67,7 @@ const RegistrationForm = ({}) => {
           </div>
         </div>
         <div className="col-auto">
-          <label className="form-label" htmlFor="lname">
+          <label className="form-label" htmlFor="last_name">
             Last Name
           </label>
           <div className="input-group form-outline flex-fill mb-0">
@@ -133,10 +137,10 @@ const RegistrationForm = ({}) => {
         <input
           className="form-check-input me-2"
           type="checkbox"
-          value=""
-          id="form2Example3c"
+          value="statment"
+          id="statment"
         />
-        <label className="form-check-label" htmlFor="form2Example3">
+        <label className="form-check-label" htmlFor="statment">
           I agree all statements in <a href="#!">Terms of service</a>
         </label>
       </div>

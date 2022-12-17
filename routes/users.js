@@ -3,13 +3,26 @@ const router = express.Router();
 const _ = require("lodash");
 const mysqlConnection = require("../utils/database");
 const helper = require("../utils/userHelper");
+const auth = require("../middleware/auth");
+
+router.get("/me", auth, async (req, res) => {
+  const value = req.body.email;
+  const sql = "select * users WHERE email=?";
+
+  mysqlConnection.query(sql, value, (err, result, fields) => {
+    if (!err) {
+      return res.json({
+        result,
+        fields,
+      });
+    } else {
+      return res.sendStatus(400).render("User is not registered.");
+    }
+  });
+});
 
 router.post("/", async (req, res) => {
   let bodyRequest = req.body;
-  const sql =
-    "INSERT INTO users (first_name,last_name,email,password,premium) VALUES(?,?,?,?,?);";
-
-  const hashedPassword = await helper.encryptPassword(bodyRequest.password);
 
   const values = [
     bodyRequest.first_name,
@@ -19,12 +32,14 @@ router.post("/", async (req, res) => {
     bodyRequest.premium,
   ];
 
+  const sql =
+    "INSERT INTO users (first_name,last_name,email,password,premium) VALUES(?,?,?,?,?);";
+  const hashedPassword = await helper.encryptPassword(bodyRequest.password);
+
   mysqlConnection.query(sql, values, (err, result, fields) => {
     if (!err) {
-      console.log("registred");
       return res.sendStatus(200);
     } else {
-      console.log(err);
       return res.sendStatus(400).render("User is not registered.");
     }
   });

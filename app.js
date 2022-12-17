@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const users = require("./routes/users");
+const auth = require("./routes/auth");
 require("dotenv").config();
 const cors = require("cors");
 const path = require("path");
@@ -37,6 +38,7 @@ app.get("/*", function (req, res) {
 });
 
 app.use("/users/", users);
+app.use("/auth/", auth);
 
 if (process.env.NODE_ENV === "production") {
   // Serve any static files
